@@ -1,0 +1,45 @@
+<div class="create-container">
+    <h1 *ngIf="!editing">
+        {{ "forms.list_orden" | translate }}
+    </h1>
+    <h1 *ngIf="editing">
+        {{ "forms.list_orden" | translate }}
+    </h1>
+      <div class="form">
+        <form [formGroup]="myForm">
+          <div class="form-group">
+            <label>{{ "forms.id" | translate }}</label>
+            <input id="cedula" type="text" class="form-control" formControlName="cedula" />
+            <span *ngIf="controlHasError('cedula', 'required')">
+              <strong>{{ "validation.required_field" | translate }}</strong>
+            </span>
+          </div>
+          <button id="botonListar" class="btn btn-primary" (click)="getUrgencias()">
+            {{ "forms.list" | translate }}
+          </button>
+        </form>
+      </div>
+  </div>
+  
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">numeroOrden</th>
+          <th scope="col">fechaOrden</th>
+          <th scope="col">fechaInicio</th>
+          <th scope="col">fechaFin</th>
+          <th scope="col">valor</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ordenlist of orden">
+          <td>{{ ordenlist.numeroOrden }}</td>
+          <td>{{ ordenlist.fechaOrden }}</td>
+          <td>{{ ordenlist.fechaInicio }}</td>
+          <td>{{ ordenlist.fechaFin }}</td>
+          <td>{{ ordenlist.valor}}</td>
+        </tr>
+      </tbody>
+    </table>
+  
